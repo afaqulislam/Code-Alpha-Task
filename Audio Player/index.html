@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Music Player</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="music-player">
+        <h2 id="song-title">Now Playing: "Select a Song"</h2>
+        <!-- Audio elements for multiple songs -->
+        <audio id="audio1" src="audio1.mp3"></audio>
+        <audio id="audio2" src="audio2.mp3"></audio>
+        <audio id="audio3" src="audio3.mp3"></audio>
+        
+        <div class="controls">
+            <!-- Song selection buttons -->
+            <button class="btn song-btn" data-audio="audio1" data-title="Song Title 1" data-artist="Artist 1">Play Song 1</button>
+            <button class="btn song-btn" data-audio="audio2" data-title="Song Title 2" data-artist="Artist 2">Play Song 2</button>
+            <button class="btn song-btn" data-audio="audio3" data-title="Song Title 3" data-artist="Artist 3">Play Song 3</button>
+            <button id="pause-button" class="btn">Pause</button>
+        </div>
+        
+        <div id="music-info" class="hidden">
+            <p id="artist-name" class="info">Artist: Unknown</p>
+            <p class="info">Audio Library</p>
+        </div>
+        <h4>Developed By AFAQ UL ISLAM</h4>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
