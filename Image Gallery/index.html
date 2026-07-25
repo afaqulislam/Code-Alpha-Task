@@ -3,34 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Image Gallery</title>
+    <title>Lumina Gallery — Image Gallery</title>
+    <meta name="description" content="A modern, responsive image gallery with glassmorphism design, dark mode, lightbox, and smooth animations.">
+    <meta name="theme-color" content="#6c5ce7">
+    <meta name="author" content="AFAQ UL ISLAM">
+    <meta property="og:title" content="Lumina Gallery">
+    <meta property="og:description" content="A modern, responsive image gallery with glassmorphism design, dark mode, lightbox, and smooth animations.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="gallery-wrapper">
-        <h1 class="gallery-heading">Image Gallery</h1>
-    <div class="gallery-container">
-        <div class="gallery-images">
-            <img src="image 1.jpeg" alt="Image 1">
-            <img src="image 2.jpeg" alt="Image 2">
-            <img src="image 3.jpeg" alt="Image 3">
-            <img src="image 4.jpeg" alt="Image 4">
-            <img src="image 5.jpeg" alt="Image 5">
-            <img src="image 6.jpeg" alt="Image 6">
-            <img src="image 7.jpeg" alt="Image 7">
-            <img src="image 8.jpeg" alt="Image 8">
-            <img src="image 9.jpeg" alt="Image 9">
-            <img src="image 10.jpeg" alt="Image 10">
-
-        </div>
-        <div class="navigation-buttons">
-            <button id="prevBtn">&#10094; Previous</button>
-            <button id="nextBtn">Next &#10095;</button>
-        </div>
+    <!-- Ambient background blobs -->
+    <div class="ambient-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
     </div>
-    <h4>Developed By AFAQ UL ISLAM</h4>
-</div>
 
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="3"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="M21 15l-5-5L5 21"/>
+            </svg>
+            <span class="logo-text">Lumina</span>
+        </div>
+        <div class="header-actions">
+            <button class="btn-icon" id="autoplayBtn" title="Auto Play">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="5,3 19,12 5,21"/>
+                </svg>
+            </button>
+            <button class="btn-icon" id="themeToggle" title="Toggle Theme">
+                <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"/>
+                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+            <button class="btn-icon" id="fullscreenBtn" title="Fullscreen">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Gallery -->
+    <main class="gallery-main">
+        <!-- Image Counter -->
+        <div class="counter" id="imageCounter">
+            <span class="counter-current">01</span>
+            <span class="counter-sep">/</span>
+            <span class="counter-total">10</span>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <!-- Main Display -->
+        <div class="gallery-display">
+            <!-- Prev Button -->
+            <button class="nav-btn nav-prev" id="prevBtn" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15,18 9,12 15,6"/>
+                </svg>
+            </button>
+
+            <!-- Image Container -->
+            <div class="image-container" id="imageContainer">
+                <img src="image 1.jpeg" alt="Gallery Image 1" class="gallery-img active" data-index="0">
+                <img src="image 2.jpeg" alt="Gallery Image 2" class="gallery-img" data-index="1">
+                <img src="image 3.jpeg" alt="Gallery Image 3" class="gallery-img" data-index="2">
+                <img src="image 4.jpeg" alt="Gallery Image 4" class="gallery-img" data-index="3">
+                <img src="image 5.jpeg" alt="Gallery Image 5" class="gallery-img" data-index="4">
+                <img src="image 6.jpeg" alt="Gallery Image 6" class="gallery-img" data-index="5">
+                <img src="image 7.jpeg" alt="Gallery Image 7" class="gallery-img" data-index="6">
+                <img src="image 8.jpeg" alt="Gallery Image 8" class="gallery-img" data-index="7">
+                <img src="image 9.jpeg" alt="Gallery Image 9" class="gallery-img" data-index="8">
+                <img src="image 10.jpeg" alt="Gallery Image 10" class="gallery-img" data-index="9">
+
+                <!-- Overlay actions -->
+                <div class="image-overlay">
+                    <button class="like-btn" id="likeBtn" title="Like this image">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                        <span class="like-count" id="likeCount">0</span>
+                    </button>
+                    <button class="btn-icon overlay-btn" id="zoomBtn" title="View Fullscreen">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="15,3 21,3 21,9"/>
+                            <polyline points="9,21 3,21 3,15"/>
+                            <line x1="21" y1="3" x2="14" y2="10"/>
+                            <line x1="3" y1="21" x2="10" y2="14"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Next Button -->
+            <button class="nav-btn nav-next" id="nextBtn" aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9,18 15,12 9,6"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Thumbnails -->
+        <div class="thumbnails-wrapper">
+            <div class="thumbnails" id="thumbnails">
+                <div class="thumb active" data-index="0">
+                    <img src="image 1.jpeg" alt="Thumbnail 1">
+                    <span class="thumb-number">1</span>
+                </div>
+                <div class="thumb" data-index="1">
+                    <img src="image 2.jpeg" alt="Thumbnail 2">
+                    <span class="thumb-number">2</span>
+                </div>
+                <div class="thumb" data-index="2">
+                    <img src="image 3.jpeg" alt="Thumbnail 3">
+                    <span class="thumb-number">3</span>
+                </div>
+                <div class="thumb" data-index="3">
+                    <img src="image 4.jpeg" alt="Thumbnail 4">
+                    <span class="thumb-number">4</span>
+                </div>
+                <div class="thumb" data-index="4">
+                    <img src="image 5.jpeg" alt="Thumbnail 5">
+                    <span class="thumb-number">5</span>
+                </div>
+                <div class="thumb" data-index="5">
+                    <img src="image 6.jpeg" alt="Thumbnail 6">
+                    <span class="thumb-number">6</span>
+                </div>
+                <div class="thumb" data-index="6">
+                    <img src="image 7.jpeg" alt="Thumbnail 7">
+                    <span class="thumb-number">7</span>
+                </div>
+                <div class="thumb" data-index="7">
+                    <img src="image 8.jpeg" alt="Thumbnail 8">
+                    <span class="thumb-number">8</span>
+                </div>
+                <div class="thumb" data-index="8">
+                    <img src="image 9.jpeg" alt="Thumbnail 9">
+                    <span class="thumb-number">9</span>
+                </div>
+                <div class="thumb" data-index="9">
+                    <img src="image 10.jpeg" alt="Thumbnail 10">
+                    <span class="thumb-number">10</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Keyboard hint -->
+        <div class="keyboard-hint">
+            <span class="key">←</span>
+            <span class="key">→</span>
+            <span class="hint-text">Navigate</span>
+            <span class="key">F</span>
+            <span class="hint-text">Fullscreen</span>
+            <span class="key">Space</span>
+            <span class="hint-text">Auto Play</span>
+        </div>
+    </main>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+        <div class="lightbox-content">
+            <img src="" alt="" class="lightbox-img" id="lightboxImg">
+        </div>
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+        </button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="15,18 9,12 15,6"/>
+            </svg>
+        </button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="9,18 15,12 9,6"/>
+            </svg>
+        </button>
+        <div class="lightbox-counter" id="lightboxCounter">1 / 10</div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Crafted with precision by <strong>AFAQ UL ISLAM</strong></p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
